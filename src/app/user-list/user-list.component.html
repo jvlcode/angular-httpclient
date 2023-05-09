@@ -1,0 +1,26 @@
+<div *ngIf="editUser;then editForm; else addForm"></div>
+<ng-template #addForm>
+    <h3>Add User</h3>
+    <div class="container">
+        <form [formGroup]="userForm" action="" method="post" (submit)="onSubmit()">
+            <label>Name <input type="text" class="form-control" formControlName="name" ></label><br>
+            <label>Email <input type="text" class="form-control"  formControlName="email" ></label><br>
+            <button type="submit" class="btn btn-primary mt-2">submit</button>
+        </form>
+    </div>
+</ng-template>
+<ng-template #editForm>
+    <h3>Edit User</h3>
+    <div class="container">
+        <form [formGroup]="userForm" action="" method="post" (submit)="onUpdate()">
+            <label>Name <input type="text" class="form-control" formControlName="name" ></label><br>
+            <label>Email <input type="text" class="form-control"  formControlName="email" ></label><br>
+            <button type="submit" class="btn btn-primary mt-2">submit</button>
+        </form>
+    </div>
+</ng-template>
+<h3>User List</h3>
+<ul>
+    <li *ngFor="let user of users">{{user.name}} | {{user.email}} <button (click)="edit(user.id)">Edit</button><button (click)="delete(user.id)">Delete</button></li>
+</ul>
+
